@@ -1,0 +1,15 @@
+echo "正在编译中,请稍候可能需要几秒的时间"
+f="$@"
+
+fn=${f##*/}
+
+b="$fn"
+
+c=${b%.*}
+
+g++ -std=c++2a -pthread -time -Og "$f" -o ~/.compile/"$c"
+
+~/.compile/"$c"
+
+#delete -f "$f"
+echo "编译成功!"

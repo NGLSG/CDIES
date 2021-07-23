@@ -1,0 +1,2 @@
+rm -rf ~/.compile/* 
+echo "删除成功"

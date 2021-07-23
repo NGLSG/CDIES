@@ -1,0 +1,25 @@
+f="$@"
+if [ -z "$f" ];then
+mkdir -p ~/prcx-folder/prcx
+touch ~/prcx-folder/prc+/main.cpp
+cd ~/prcx-folder/prcx
+echo "prcx项目创建成功且目录在~/prcx-folder/prcx/ "
+else
+mkdir -p ~/prcx-folder/"$f"
+touch ~/prcx-folder/"$f"/main.cpp
+cd ~/prcx-folder/"$f"
+echo ""$f"项目创建成功目录在~/prcx-folder/"$f"/ "
+fi
+cat > main.cpp<<eof
+#import <iostream>
+
+using namespace std;
+
+int main()
+{
+
+return 0;
+}
+eof
+
+cp -rf ~/.Nod/.Makefilex ./Makefile

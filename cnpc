@@ -1,0 +1,24 @@
+
+f="$@"
+if [ -z "$f" ];then
+mkdir -p  ~/prc-folder/prc
+touch ~/prc-folder/prc/main.c
+cd ~/prc-folder/prc
+echo "prc项目创建成功目录在~/prc+-folder/prc/ "
+else
+mkdir -p  ~/prc-folder/"$f"
+touch ~/prc-folder/"$f"/main.c
+cd ~/prc-folder/"$f"
+echo ""$f"项目创建成功目录在~/prc-folder/"$f"/ "
+fi
+cat > main.c<<eof
+#include <stdio.h>
+
+int main(void)
+{
+
+	return 0;
+}
+eof
+
+cp -rf ~/.Nod/.Makefile ./Makefile

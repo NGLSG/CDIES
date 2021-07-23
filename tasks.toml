@@ -1,0 +1,6 @@
+[编译运行C/C++文件]
+command='rc'
+args=['${file}']
+[C/C++项目(多个c/cpp文件)]
+command='make'
+args=['${workspaceFolder}Makefile']
