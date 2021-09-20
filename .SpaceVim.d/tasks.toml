@@ -1,0 +1,10 @@
+[编译运行C/C++文件]
+command='crc'
+args=['${file}']
+
+[执行cmake]
+command='cm'
+
+[执行make]
+command="make"
+args=['${workspaceFolder}Makefile']

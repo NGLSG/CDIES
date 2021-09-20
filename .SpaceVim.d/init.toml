@@ -1,0 +1,760 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2017 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    # 设置 SpaceVim 主题及背景，默认的主题是 gruvbox，如果你需要使用更
+    # 多的主题，你可以载入 colorscheme 模块
+    # colorscheme = "gruvbox"
+
+    colorscheme = "OceanicNext"
+    colorscheme_bg = "dark"
+
+    # colorscheme = "NeoSolarized"
+    # colorscheme_bg = "light"
+    # 背景可以取值 "dark" 和 "light"
+
+    # 启用/禁用终端真色，在目前大多数终端下都是支持真色的，当然也有
+    # 一小部分终端不支持真色，如果你的 SpaceVim 颜色看上去比较怪异
+    # 可以禁用终端真色，将下面的值设为 false
+    enable_guicolors = true
+    # 设置状态栏上分割符号形状，如果字体安装失败，可以将值设为 "nil" 以
+    # 禁用分割符号，默认为箭头 "arrow"
+    statusline_separator = "nil"
+    statusline_separator = "bar"
+    # 设置顶部标签列表序号类型，有以下五种类型，分别是 0 - 4
+    # 0: 1 ➛ ➊ 
+    # 1: 1 ➛ ➀
+    # 2: 1 ➛ ⓵
+    # 3: 1 ➛ ¹
+    # 4: 1 ➛ 
+    buffer_index_type = 4
+    # 显示/隐藏顶部标签栏上文件类型图标，这一图标需要安装 nerd fonts，
+    # 如果未能成功安装这一字体，可以隐藏图标
+    enable_tabline_filetype_icon = true
+    # 是否在状态栏上显示当前模式，默认情况下，不显示 Normal/Insert 等
+    # 字样，只以颜色区分当前模式
+    enable_statusline_display_mode = false
+
+    # MY OWN OPTIONS
+    filemanager = "defx"
+    autocomplete_method = "coc"
+    bootstrap_before = "myspacevim#before"
+    bootstrap_after = "myspacevim#after"
+
+# ----------------- SpaceVim 添加的各种 layers ---------------------------------
+
+# 计算器, 日历, 书签等小工具
+[[layers]]
+  name = 'tools'
+
+# 禁用 SpaceVim 的 checkers layer, 让 coc.nvim 来管理
+[[layers]]
+  name = "checkers"
+  enable = false
+
+# 版本控制
+[[layers]]
+  name = "VersionControl"
+  enable-gtm-status = true
+
+[[layers]]
+  name = "git"
+  git-plugin = "fugitive"
+
+[[layers]]
+  name = "fzf"
+
+[[layers]]
+  name = "lang#markdown"
+
+[[layers]]
+  name = "lang#latex"
+
+# ----------------- 添加的插件 -------------------------------------------------
+
+# oceanic-next 主题，采用其他的主题可以删除
+[[custom_plugins]]
+  name = "mhartington/oceanic-next"
+  merged = 0
+
+# coc.nvim 核心配置，不要删除
+[[custom_plugins]]
+  name = 'neoclide/coc.nvim'
+  merge = 0
+
+# 优化 coc 的搜索界面
+[[custom_plugins]]
+  name = 'antoinemadec/coc-fzf'
+  branch = 'release'
+
+[[custom_plugins]]
+    name = 'junegunn/fzf.vim'
+
+# 快速搜索文件和 buffer
+[[custom_plugins]]
+    name = "Yggdroot/LeaderF"
+    build = "./install.sh"
+
+# 快速编辑 markdown 的表格
+[[custom_plugins]]
+  name = 'dhruvasagar/vim-table-mode'
+
+# 更加美观的 tagbar 
+[[custom_plugins]]
+    name = 'liuchengxu/vista.vim'
+
+# 更加方便的调节窗口的大小
+[[custom_plugins]]
+    name = 'simeji/winresizer'
+
+# 为 c/cpp 提供基于 lsp 的高亮
+[[custom_plugins]]
+    name = 'jackguo380/vim-lsp-cxx-highlight'
+
+# 从 http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
+[[custom_plugins]]
+    name = 'skywind3000/vim-cppman'
+
+# 利用 git blame 显示当前行的 commit message
+[[custom_plugins]]
+    name = 'rhysd/git-messenger.vim'
+    lazy =  1
+    on_cmd = 'GitMessenger'
+
+# 以悬浮窗口的形式打开终端
+[[custom_plugins]]
+    name = 'voldikss/vim-floaterm'
+
+# 显示搜索的标号
+[[custom_plugins]]
+    name = 'google/vim-searchindex.git'
+
+# ----------------- 尝试的内容 -------------------------------------------------
+
+# debug 框架，尚未完全集成到本配置中
+[[custom_plugins]]
+  name = 'puremourning/vimspector'
+
+# 配合 sourcetrail 配合使用
+[[custom_plugins]]
+  name = 'CoatiSoftware/vim-sourcetrail'
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+
+#GDB 调试
+[[custom_plugins]]
+name = "hiberabyss/NeovimGdb"
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+

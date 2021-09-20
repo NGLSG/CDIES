@@ -1,0 +1,6 @@
+rm -rf ~/.compile/* 
+if [ $? -eq 0 ]; then
+echo "删除成功"
+else
+echo "删除失败"
+fi

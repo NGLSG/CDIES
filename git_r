@@ -1,0 +1,11 @@
+echo "请先使用了git init后使用\n"
+git remote add origin "$@"
+git add .
+git commit -m "fix_bug"
+git branch -m main
+git push -u origin +main
+if [ $? -eq 0 ]; then
+echo "提交成功"
+else
+echo "提交失败"
+fi

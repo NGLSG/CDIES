@@ -1,0 +1,9 @@
+set (CMAKE_C_COMPILER "/usr/local/bin/gcc")
+set (CMAKE_CXX_COMPILER "/usr/local/bin/g++")
+cmake_minimum_required(VERSION 3.0)
+project(demo)
+link_libraries(SDL2 SDL2_image SDL2_ttf)
+set(CMAKE_CXX_STANDARD 20)
+
+add_executable(demo main.cpp)
+

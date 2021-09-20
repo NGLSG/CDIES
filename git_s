@@ -1,0 +1,8 @@
+
+ssh-keygen -t rsa -C "$@"
+git config --global user.email "$@"
+if [ $? -eq 0 ]; then
+echo "登录成功"
+else
+echo "登录失败"
+fi

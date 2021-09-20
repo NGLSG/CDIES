@@ -1,0 +1,10 @@
+mkdir build
+cd build
+cmake ..
+make -j8
+make install
+if [ $? -eq 0 ]; then
+echo "编译成功"
+else
+echo "出现未知错误,请重试"
+fi
