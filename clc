@@ -1,6 +1,7 @@
-rm -rf ~/.compile/* 
+sudo rm -rf $(cat /home/Template/bin.txt)
 if [ $? -eq 0 ]; then
-echo "删除成功"
+  sudo rm -rf /home/Template/bin.txt
+  echo "删除成功"
 else
-echo "删除失败"
+  echo "删除失败"
 fi

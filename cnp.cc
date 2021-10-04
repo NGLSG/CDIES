@@ -17,7 +17,7 @@ using namespace std;
 #define D_C "/home/Template/DefaultC"
 #define P_P "/home/Template/path.txt"//项目文件存储
 #define PATH_SIZE 255
-#define VERSION 1.0
+#define VERSION 2.0
 
 bool rep=false;
 
@@ -58,83 +58,88 @@ void remove_element(map<T,T>&m,T t);//删除元素
 //main
 int main(int argc,char*argv[]){
   pro=loadMap();
-  vector<string>pro_fla;
-  for(int i=0;i<argc;i++){
-    pro_fla.push_back(argv[i]);
-  }
-  vector<string>pro2=pro_fla;
-  if(argc<4){
-    for(int i=0;i<2;i++){
-      pro_fla.push_back("");
+  if(argc>1){
+    vector<string>pro_fla;
+    for(int i=0;i<argc;i++){
+      pro_fla.push_back(argv[i]);
     }
-  }
-  if(!pro2.empty()){
-    pro2.erase(pro2.begin());
-  }
-  if(!pro_fla.empty()){
-    remove_element<string>(pro_fla,".");
-    remove_element<string>(pro_fla," ");
-    remove_element<string>(pro_fla,"./");
-    pro_fla.erase(pro_fla.begin());//删除无用数据
-  }
-  auto tmp=pro_fla.begin();
-  try {
-    int judge=0;
-    for(auto&it:pro_fla){
-      if("-add"==it){
-        judge=1;
+    vector<string>pro2=pro_fla;
+    if(argc<4){
+      for(int i=0;i<2;i++){
+        pro_fla.push_back("");
       }
-      else if("-del"==it){
-        judge=2;
-      }
-      else if("-rep"==it){
-        judge=3;
-      }
-      else if("-help"==it||"h"==it||"-h"==it||"help"==it){
-        judge=4;
-      }
-      else if("-version"==it||"v"==it||"-v"==it||"version"==it){
-        judge=5;
-      }
-
     }
-    map<string,string>m;
-    if(judge==1){
-      pro_fla.erase(pro_fla.begin());
-      for(;tmp<pro_fla.end();tmp++){
-        m.insert(make_pair(*tmp,*(tmp+1)));
-        tmp++;
-      }
-      add_projects(m);
-    }
-    else if(judge==2){
+    if(!pro2.empty()){
       pro2.erase(pro2.begin());
-      vector<string>v;
-      for(auto&it:pro2){
-        v.push_back(it);
-      }
-      del_projects(v);
     }
-    else if(judge==3){
-      pro_fla.erase(pro_fla.begin());
-      for(;tmp<pro_fla.end();tmp++){
-        m.insert(make_pair(*tmp,*(tmp+1)));
-        tmp++;
-      }
-      rep_projects(m);
+    if(!pro_fla.empty()){
+      remove_element<string>(pro_fla,".");
+      remove_element<string>(pro_fla," ");
+      remove_element<string>(pro_fla,"./");
+      pro_fla.erase(pro_fla.begin());//删除无用数据
     }
-    else if(judge==4){
-      option_exp(); 
-    }
-    else if(judge==5){
-      cout<<"作者nglsg,联系QQ：927039685,交流群:1023190045\n仓库地址https://github.com/NGLSG/\n当前版本为:"<<
-        VERSION<<endl;
-    }
-    else{
-      creat_project(*tmp,*(tmp+1),*(tmp+2));
-    }
-  } catch (...) {
+    auto tmp=pro_fla.begin();
+    try {
+      int judge=0;
+      for(auto&it:pro_fla){
+        if("-add"==it){
+          judge=1;
+        }
+        else if("-del"==it){
+          judge=2;
+        }
+        else if("-rep"==it){
+          judge=3;
+        }
+        else if("-help"==it||"h"==it||"-h"==it||"help"==it){
+          judge=4;
+        }
+        else if("-version"==it||"v"==it||"-v"==it||"version"==it){
+          judge=5;
+        }
 
+      }
+      map<string,string>m;
+      if(judge==1){
+        pro_fla.erase(pro_fla.begin());
+        for(;tmp<pro_fla.end();tmp++){
+          m.insert(make_pair(*tmp,*(tmp+1)));
+          tmp++;
+        }
+        add_projects(m);
+      }
+      else if(judge==2){
+        pro2.erase(pro2.begin());
+        vector<string>v;
+        for(auto&it:pro2){
+          v.push_back(it);
+        }
+        del_projects(v);
+      }
+      else if(judge==3){
+        pro_fla.erase(pro_fla.begin());
+        for(;tmp<pro_fla.end();tmp++){
+          m.insert(make_pair(*tmp,*(tmp+1)));
+          tmp++;
+        }
+        rep_projects(m);
+      }
+      else if(judge==4){
+        option_exp(); 
+      }
+      else if(judge==5){
+        cout<<"作者nglsg,联系QQ：927039685,交流群:1023190045\n仓库地址https://github.com/NGLSG/\n当前版本为:"<<
+          VERSION<<endl;
+      }
+      else{
+        creat_project(*tmp,*(tmp+1),*(tmp+2));
+      }
+    } catch (...) {
+
+    }
+  }
+  else{
+    cerr<<"至少需要一个选项,请使用help获取帮助\n";
   }
   return 0;
 }
@@ -186,9 +191,16 @@ void add_projects(map<string,string>m){
 
 bool checkExist(string file){
   int pos=file.find("~");
+  int pos2=file.find("./");
   if(pos!=string::npos){
     file.erase(file.begin());
     file.insert(0,getenv("HOME"));
+  }
+  if(pos2!=string::npos){
+    file=file.substr(pos2,file.back());
+    string tmp=get_path();
+    tmp+=file;
+    file=tmp;
   }
   struct stat info;
   if (stat(file.c_str(), &info) != 0) {  // does not exist
@@ -281,8 +293,12 @@ void creat_project(string flags,string name,string dir){
     if(checkExist(dir)){
       throw "pass";
     }
-  } 
+    else{
+      cerr<<"出现未知错误,请重试\n"<<endl;
+    }
+  }
   catch (...) {
+    cout<<dir<<endl;
     cout<<name<<" 项目成功创建在 "<<dir<<" 目录\n";
     save_pro(name,dir);
   }
@@ -325,8 +341,8 @@ void add_project(string flags,string dir){
   else{
     int pos=dir.find("./");
     string path;
-    path=get_path();
     if(pos!=string::npos){
+      path=get_path();
       dir=dir.substr(pos+2);
       path+=dir;
     }
@@ -338,8 +354,12 @@ void add_project(string flags,string dir){
     }
     string cmd="cp -rf ";
     cmd+=path;
+    cout<<cmd<<endl;
+
     cmd+=" ";
     cmd+=T_F;
+    cout<<cmd<<endl;
+
     system(cmd.c_str());
     if(path.back()=='/'){
       path.pop_back();
@@ -348,6 +368,8 @@ void add_project(string flags,string dir){
     dir=path.substr(pos+1);
     path=T_F;
     path+=dir;
+    cout<<cmd<<endl;
+    cout<<path<<endl;
     if(!rep){
       pro.insert(make_pair(flags,path));
     }

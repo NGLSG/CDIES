@@ -1,24 +1,17 @@
 #if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
 #import <chrono>
-
+#import <sys/stat.h>
+#import <unistd.h>
 #import <iostream>
-
 #import <cstdio>
-
 #import <string.h>
-
 #import <cstdlib>
-
 #import <string>
-
 #import <fstream>
-
 #import <vector>
-
 #import <algorithm>
-
 #import <regex>
-
+#import <map>
 #import <dirent.h>
 
 using namespace std;
@@ -52,8 +45,17 @@ void remove_element(vector<T>&v,T t);
 template<class U>
 void f_o_e(string &flags,string e,string o,vector<U>&v);
 
+//保存地址
+void save(string path);
+
+//读取
+map<string,string> load();
+
 //获取文件
 vector<string> get_all_files(string path,string suffix,vector<string> &res);
+
+//保存地址
+#define save_path "/home/Template/bin.txt"
 
 //SDL2 flags
 #define F_SDL2 "`sdl2-config --cflags --libs`"
@@ -67,8 +69,10 @@ vector<string> get_all_files(string path,string suffix,vector<string> &res);
 //GTK4 选项
 #define O_GTK4 "-G"
 
+#define PATH_SIZE 255
+
 //argc 默认为1
-//
+
 int main(int argc,char *argv[]){
   system("ulimit -c unlimited");//生成core
   string regular="[\\s\\w]+\\.(c|cpp|cxx|cc)$";//\s\w匹配任意字符包括空格
@@ -89,7 +93,7 @@ int main(int argc,char *argv[]){
 
     if(argc==2){
       if(strcmp(argv[1],"-v")==0 || strcmp(argv[1],"--version")==0 || strcmp(argv[1],"v")==0|| strcmp(argv[1],"version")==0){
-        cout<<"目前版本为:0.2beta\n作者:尼古拉斯鸽\n交流群:1023190045\n帮助:使用-h或--help获取帮助\n";
+        cout<<"目前版本为:0.3beta\n作者:尼古拉斯鸽\n交流群:1023190045\n帮助:使用-h或--help获取帮助\n";
 
       }
       else if(strcmp(argv[1],"help")==0 || strcmp(argv[1],"-h")==0 || strcmp(argv[1],"--help")==0 || strcmp(argv[1],"h")==0){
@@ -241,6 +245,9 @@ void compile(string file,string flags,string res){
         cmd+=res;
         system(cmd.c_str());
       }
+      string tmp="./";
+      tmp+=res;
+      save(tmp);
     }
     else{
       throw "error!";
@@ -294,6 +301,10 @@ void compile(string file,string flags){
         cmd+=res;
         system(cmd.c_str());
       }
+      string tmp="./";
+      tmp+=res;
+      save(tmp);
+
     }
     else{
       throw "error!";
@@ -400,16 +411,53 @@ void f_o_e(string &flags,string ext,string opt,vector<U>&v){
     }
   }
 }
-/*
- *      水
- *      水
- *      水     
- *      水
- *      水     
- *      水      
- *      水
- *
- * */
+
+string get_path(){
+  string res;
+  char path[PATH_SIZE];
+  if(!getcwd(path,PATH_SIZE)){
+    cout<<"error,未知路径"<<endl;
+    return 0;
+  }
+  res=path;
+  res+="/";
+  return res;
+}
+
+
+bool checkExist(string file){
+  int pos=file.find("~");
+  int pos2=file.find("./");
+  if(pos!=string::npos){
+    file.erase(file.begin());
+    file.insert(0,getenv("HOME"));
+  }
+  if(pos2!=string::npos){
+    file=file.substr(pos2,file.back());
+    string tmp=get_path();
+    tmp+=file;
+    file=tmp;
+  }
+  struct stat info;
+  if (stat(file.c_str(), &info) != 0) {  // does not exist
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+
+void save(string path){
+  if(checkExist(save_path)){
+    system("touch bin.txt");
+  }
+  else{
+    ofstream ofs(save_path,ios::out|ios::app);
+    ofs<<path<<endl;
+    ofs.close();
+  }
+}
+
 #else
 #include <iostream>
 int main()

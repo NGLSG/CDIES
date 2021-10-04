@@ -44,11 +44,19 @@ clc 清除所有编译的二进制文件
 cdie 编写文件  
 用法:`<cdie 文件/目录>`
 
-cnpc 创建新的C项目  
-用法:`<cnpc [项目名称]>`//如果没有则创建pro项目(在pro-folder文件夹中)
+cnp 创建新项目
+用法 `<cnp [选项] `
 
-cnpcx 创建新的C++项目  
-用法:`<cnpcx [项目名称]>`//如果没有则创建prox项目(在prox-folder文件夹中)
+选项 | 意义
+---  | ---
+-add | [目标选项] [模板位置] 新建模板项目
+-rep | [目标选项] [模板位置] 替换选项
+-del | [目标选项] 删除模板文件
+-s   | [项目名] [地址](可为空) 创建sdl2项目
+-dc  | [项目名] [地址](可为空) 创建C默认项目
+-dx  | [项目名] [地址](可为空) 创建C++默认项目
+-c   | [项目名] [地址](可为空) 创建CMake项
+---  | ---
 
 delete 删除所有配置文件  
 用法:`<delete>`  
@@ -157,6 +165,17 @@ TG group:Not currently(The main reason is that you can't create without friends)
 * 1.3.1.1.cmake命令的优化  
 * 增加了异步make cmake (SPACE p t r 普通模式下)  
 * 优化cnpc cnpcx  
+
+1.5:
+更新内容:
+* 1.5.1.删除cnpc cnpx 由cnp代替
+* 1.5.2.cnp
+* * 1.5.2.1.性能更好
+* * 1.5.2.2.支持扩展
+* * 1.5.2.3.更加人性化
+* 1.5.3.clp与clc命令的优化
+* 1.5.4.crc的优化
+* 使用`<$HOME/CDIES/update.sh> `更新
 
 ### 研发透露和作者的话
 作者只是一个普通的高中生,更新慢的话,别太介意了,开学后坚持一月一更吧

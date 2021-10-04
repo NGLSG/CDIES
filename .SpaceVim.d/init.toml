@@ -758,3 +758,54 @@ name = "hiberabyss/NeovimGdb"
   [[layers]]
    name = "debug"
 
+
+#coc 配置 c++
+[[layers]]
+  name="lang#c"
+  [[layers]]
+  name='lang#c'
+  enable_clang_syntax_highlight = true
+  [[layers]]
+  name = "lsp"
+  [[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  [layers.override_cmd]
+  c = ["clangd"]
+  [[layers]]
+  name ="format"
+  [[layers]]
+  name ="lang#c"
+  [layer.clang_std]
+
+  #python
+  [[layers]]
+  name = "lang#python"
+  [[layers]]
+  name = "lang#python"
+  format_on_save = 1
+  [[layers]]
+  name = "lang#python"
+  python_file_head = [
+      '#!/usr/bin/ecdie python',
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  [[layers]]
+  name = "lang#python"
+  enable_typeinfo = true
+  [[layers]]
+    name = 'lang#python'
+    format_on_save = true
+    [[layers]]
+  name = 'lang#python'
+  enabled_linters = ['python', 'pylint']
+  [[layers]]
+  name = "format"
+  [[layers]]
+   name = "debug"
+

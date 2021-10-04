@@ -7,9 +7,9 @@ read -p "如果你可以接受上述情况,可以继续安装,请输入你的选
 
 if [[ -z "$select" ]] || [[ ${select} -eq "yes" ]] || [[ ${select} -eq "y" ]]
 then
-  git clone https://mirrors.tuna.tsinghua.edu.cn/git/gcc.git /usr/local/share/gcc
+  git clone https://mirrors.tuna.tsinghua.edu.cn/git/gcc.git /usr/local/gcc
   apt-get install flex
-  cd /usr/local/share/gcc
+  cd /usr/local/gcc
   ./contrib/download_prerequisites
   mkdir build
   cd build
@@ -19,7 +19,7 @@ then
   if [ $? -eq 0 ]; then
     echo "安装成功,重启系统已生效!"
     make clean
-    rm -rf /usr/local/share/gcc/
+    rm -rf /usr/local/gcc/
   else
     echo "发生了未知错误呢!这绝对不是我的问题(哼~)请检查报错～"
   fi

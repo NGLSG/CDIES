@@ -21,27 +21,24 @@ pip install --user flake8
 
 pip install Pillow
 
-python3 RI
-
 echo "安装插件ing"
 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-g++ -pthread -Og -Wall -w direct.cpp -o /bin/delete
+g++ -Og -g -w ~/CDIES/delete.cpp -o /bin/delete
 
-rm -rf ./out.bmp ./direct.cpp ./RI
-mkdir -p ~/.Nod
-ln -s ~/CDIES/Makefilex ~/CDIES/Makefile ~/CDIES/CMakeLists.txt ~/.Nod
 curl -sLf https://spacevim.org/cn/install.sh | bash
+
 cd ~
+
 rm -rf .SpaceVim.d
+
 ln -s ~/CDIES/.SpaceVim.d/ ~
-mkdir ~/.compile
 
-chmod +x ~/CDIES/cm ~/CDIES/git_s ~/CDIES/clc ~/CDIES/cnpc ~/CDIES/cnpcx ~/CDIES/clp ~/CDIES/git_r
+chmod +x ~/CDIES/cm ~/CDIES/git_s ~/CDIES/clc.sh ~/CDIES/clp.sh ~/CDIES/git_r
 
-ln -s ~/CDIES/clc ~/CDIES/cm ~/CDIES/git_s ~/CDIES/cnpc ~/CDIES/cnpcx ~/CDIES/clp ~/CDIES/git_r /bin
+ln -s ~/CDIES/clc ~/CDIES/cm ~/CDIES/git_s ~/CDIES/clp ~/CDIES/git_r /bin
 
 g++ -w -g -Og ~/CDIES/crc.cc -o /bin/crc
 crc -w ~/CDIES/cnp.cc -o /bin/cnp
@@ -106,7 +103,7 @@ cat>>~/.SpaceVim.d/init.toml<<EOF
 
 EOF
 
-g++ ~/CDIES/extensions_install.cc -o /bin/extensions_install
+g++ -w -Og -g ~/CDIES/extensions_install.cc -o /bin/extensions_install
 
 cd ~
 
