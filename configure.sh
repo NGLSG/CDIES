@@ -26,7 +26,7 @@ echo "安装插件ing"
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-g++ -Og -g -w ~/CDIES/delete.cpp -o /bin/delete
+
 
 curl -sLf https://spacevim.org/cn/install.sh | bash
 
@@ -36,12 +36,15 @@ rm -rf .SpaceVim.d
 
 ln -s ~/CDIES/.SpaceVim.d/ ~
 
-chmod +x ~/CDIES/cm ~/CDIES/git_s ~/CDIES/clc.sh ~/CDIES/clp.sh ~/CDIES/git_r
+chmod +x ~/CDIES/git_s ~/CDIES/clc.sh ~/CDIES/clp.sh ~/CDIES/git_r
 
-ln -s ~/CDIES/clc ~/CDIES/cm ~/CDIES/git_s ~/CDIES/clp ~/CDIES/git_r /bin
+ln -s ~/CDIES/clc ~/CDIES/git_s ~/CDIES/clp ~/CDIES/git_r /bin
 
-g++ -w -g -Og ~/CDIES/crc.cc -o /bin/crc
+g++ -Og -g -w ~/CDIES/crc.cc -o /bin/crc
+g++ -Og -g -w ~/CDIES/delete.cpp -o /bin/delete
+g++ -Og -g -w ~/CDIES/cm.cc -o /bin/cm
 crc -w ~/CDIES/cnp.cc -o /bin/cnp
+
 
 cd 
 rm -rf ~/.SpaceVim/init.vim

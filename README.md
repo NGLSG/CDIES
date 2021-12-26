@@ -78,9 +78,19 @@ clp 删除所有项目文件
 git_r **请本地仓库上传至git仓库,需要提前git init**  
 用法:`<git_r [仓库地址]>`
 
-cm 自动化cmake(适用于普通场合)  
-用法:在需要make编译的地方输入`<cm>` 并回车
-
+cm  makefile与cmake的管理
+选项 | 意义
+---- | ----- 
+-c   | 添加自定义命令[自定义选项][命令]
+-h   | 查看帮助
+-rc  | 运行自定义命令[自定义选项][命名]
+-dc  | 删除自定义命令[自定义选项]
+-ini | 初始化
+-r   | 删除make install产生的程序[命名]
+-d   | 执行makefile或cmake[命名]
+-l   | 查看make install 产生的程序及大小
+-s   | 运行shell命令
+---- | ----- 
 
 快捷键(常用):
 `<空格+p+t+r>` 异步任务(编译运行之类的)
@@ -175,6 +185,12 @@ TG group:Not currently(The main reason is that you can't create without friends)
 * * 1.5.2.3.更加人性化
 * 1.5.3.clp与clc命令的优化
 * 1.5.4.crc的优化
+* 使用`<$HOME/CDIES/update.sh> `更新
+
+1.6:
+更新内容:
+* 1.6.1.删除cm用cm代替
+* 1.6.2.更加高效的cmake与makefile管理
 * 使用`<$HOME/CDIES/update.sh> `更新
 
 ### 研发透露和作者的话

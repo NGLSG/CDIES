@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(LIB_DIR ${CMAKE_SOURCE_DIR}/Library)
 
-set(INC_DIR ${CMAKE_SOURCE_DIR}/include)
+set(INC_DIR ${CMAKE_SOURCE_DIR}/Include)
 
 #编译选项
 if(CMAKE_COMPILER_IS_GNUCXX)
@@ -38,7 +38,7 @@ target_include_directories(target PRIVATE ${INC_DIR})
 #install 模块
 
 install(TARGETS target MySharedLib MyStaticLib
-  EXPORT _run_
+  EXPORT test
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
   RUNTIME DESTINATION bin

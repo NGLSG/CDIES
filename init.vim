@@ -8,6 +8,7 @@
 "插件安装区
 call plug#begin('~/.config/nvim/plugged')
 Plug 'yianwillis/vimcdoc'
+"Plug 'tomasr/molokai'
 " 显示中文帮助                                             
 if version >= 800
   set helplang=cn
@@ -97,4 +98,4 @@ let g:quickrun_default_flags = {
 " ${exeFile}            QuickRun自动选择的编译后的可执行文件位置，脚本无需编译则应该用${thisFile}
 " ${workspaceFolder}    项目根目录
 
-map <run> <ESC>:w<CR> <ESC>:!rc % <<CR>
+
