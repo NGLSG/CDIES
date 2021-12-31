@@ -326,7 +326,6 @@ string get_path(){
   char path[PATH_SIZE];
   if(!getcwd(path,PATH_SIZE)){
     cout<<"error,未知路径"<<endl;
-    return 0;
   }
   res=path;
   res+="/";

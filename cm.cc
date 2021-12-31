@@ -162,10 +162,6 @@ int main(int argc, char *argv[])
                 {
                     cout << "\033[32m" << it.first << "\tcmd is: " << it.second << "\033[31m\n";
                 }
-            } else
-            {
-                cout << "cmd cannot found\n";
-                return 0;
             }
         }
     }
@@ -181,7 +177,7 @@ string get_path()
     if (!getcwd(path, PATH_SIZE))
     {
         cout << "error,未知路径" << endl;
-        return 0;
+
     }
     res = path;
     res += "/";

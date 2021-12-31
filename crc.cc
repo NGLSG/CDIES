@@ -41,7 +41,7 @@ void f_sdl2(int argc,char* argv[],string &flags);
 template<class T>
 void remove_element(vector<T>&v,T t);
 
-//flags 扩展 
+//flags 扩展
 template<class U>
 void f_o_e(string &flags,string e,string o,vector<U>&v);
 
@@ -115,7 +115,7 @@ int main(int argc,char *argv[]){
             remove_element<string>(tmp,file);
           }
           else{
-            flags+=it; 
+            flags+=it;
             flags+=" ";
           }
         }
@@ -175,7 +175,7 @@ int main(int argc,char *argv[]){
 
           }
           else{
-            throw "key is empty so nothing will happen"; 
+            throw "key is empty so nothing will happen";
           }
         }
         catch(...){}
@@ -287,7 +287,7 @@ void compile(string file,string flags){
     cout<<"输出的可执行文件为: "<<res<<endl;
     cout<<"编译命令为: "<<cmd<<endl;
     auto beginTime = std::chrono::high_resolution_clock::now();
-    int status = system(cmd.c_str()); 
+    int status = system(cmd.c_str());
     auto endTime = chrono::high_resolution_clock::now();
     auto elapsedTime = chrono::duration_cast<chrono::microseconds>(endTime-beginTime);
     double programTimes = ((double) elapsedTime.count());
@@ -417,7 +417,6 @@ string get_path(){
   char path[PATH_SIZE];
   if(!getcwd(path,PATH_SIZE)){
     cout<<"error,未知路径"<<endl;
-    return 0;
   }
   res=path;
   res+="/";

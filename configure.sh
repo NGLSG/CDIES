@@ -34,21 +34,21 @@ cd ~
 
 rm -rf .SpaceVim.d
 
-ln -s ~/CDIES/.SpaceVim.d/ ~
+sudo ln -s ~/CDIES/.SpaceVim.d/ ~
 
-chmod +x ~/CDIES/git_s ~/CDIES/clc.sh ~/CDIES/clp.sh ~/CDIES/git_r
+sudo chmod +x ~/CDIES/git_s ~/CDIES/git_r
 
-ln -s ~/CDIES/clc ~/CDIES/git_s ~/CDIES/clp ~/CDIES/git_r /bin
+sudo ln -s ~/CDIES/git_s  ~/CDIES/git_r /bin
 
-g++ -Og -g -w ~/CDIES/crc.cc -o /bin/crc
-g++ -Og -g -w ~/CDIES/delete.cpp -o /bin/delete
-g++ -Og -g -w ~/CDIES/cm.cc -o /bin/cm
-crc -w ~/CDIES/cnp.cc -o /bin/cnp
+sudo g++ -Og -g -w ~/CDIES/crc.cc -o /bin/crc
+sudo g++ -Og -g -w ~/CDIES/delete.cpp -o /bin/delete
+sudo g++ -Og -g -w ~/CDIES/cm.cc -o /bin/cm
+sudo crc -w ~/CDIES/cnp.cc -d /bin/cnp
 
 
 cd 
-rm -rf ~/.SpaceVim/init.vim
-ln -s  ~/CDIES/init.vim ~/.SpaceVim/
+sudo rm -rf ~/.SpaceVim/init.vim
+sudo ln -s  ~/CDIES/init.vim ~/.SpaceVim/
 
 cd
 echo "配置默认开发语言(c++/c,python)ing"
@@ -106,7 +106,7 @@ cat>>~/.SpaceVim.d/init.toml<<EOF
 
 EOF
 
-g++ -w -Og -g ~/CDIES/extensions_install.cc -o /bin/extensions_install
+sudo g++ -w -Og -g ~/CDIES/extensions_install.cc -o /bin/extensions_install
 
 cd ~
 
