@@ -146,7 +146,7 @@ int main(int argc, char *argv[])
                 cmd.erase(cmd.begin());
                 for (auto &it2: cmd)
                     cmake.DELC(it2);
-            } else if (it == "-inir")
+            } else if (it == "-ini")
             {
                 string path= home(CPATH);
                 string cmd="rm -rf "+path;
