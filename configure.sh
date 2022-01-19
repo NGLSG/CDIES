@@ -42,7 +42,7 @@ sudo ln -s ~/CDIES/git_s  ~/CDIES/git_r /bin
 
 sudo g++ -Og -g -w ~/CDIES/crc.cc -o /bin/crc
 sudo g++ -Og -g -w ~/CDIES/delete.cpp -o /bin/delete
-sudo g++ -Og -g -w ~/CDIES/cm.cc -o /bin/cm
+sudo g++ -Og -g -w ~/CDIES/mpm.cc -o /bin/mpm
 sudo crc -w ~/CDIES/cnp.cc -d /bin/cnp
 
 

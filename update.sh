@@ -2,7 +2,7 @@
 rm -rf ~/.Nod/ /bin/cnpc /bin/cnpcx
 g++ -Og -g -w ~/CDIES/cnp.cc -o /bin/cnp
 g++ -Og -g -w ~/CDIES/crc.cc -o /bin/crc
-g++ -Og -g -w ~/CDIES/cm.cc -o /bin/cm
+g++ -Og -g -w ~/CDIES/mpm.cc -o /bin/mpm
 
 if [ $? -eq 0 ]; then
   echo "安装成功"
