@@ -1,14 +1,4 @@
-#import <iostream>
-#import <unistd.h>
-#import <vector>
-#import <fstream>
-#import <map>
-#import <string>
-#import <algorithm>
-#import <sys/types.h>
-#import <sys/stat.h>
-using namespace std;
-
+#include "share.h"
 #define T_F "/home/Template/"//模板文件夹
 #define M_S "/home/Template/flags.txt"//flags存储位置
 #define D_P "/home/Template/DefaultCx/"//默认模板
@@ -22,8 +12,6 @@ using namespace std;
 bool rep=false;
 
 map<string,string>pro;//全局map
-
-bool checkExist(string name);//检查文件是否存在
 
 map<string,string> loadMap();//加载Map
 
@@ -46,8 +34,6 @@ void rep_projects(map<string,string>m);//批量替换
 void save_pro(string name,string dir);//保存项目路径
 
 void option_exp();//选项详解
-
-string get_path();//获取目录
 
 template<class T>
 void remove_element(vector<T>&v,T t);//删除元素
@@ -139,7 +125,7 @@ int main(int argc,char*argv[]){
     }
   }
   else{
-    cerr<<"至少需要一个选项,请使用help获取帮助\n";
+    cerr<<"\033[31m错误: 至少需要一个选项,请使用help获取帮助\033[0m\n";
   }
   return 0;
 }
@@ -189,27 +175,6 @@ void add_projects(map<string,string>m){
   }
 }
 
-bool checkExist(string file){
-  int pos=file.find("~");
-  int pos2=file.find("./");
-  if(pos!=string::npos){
-    file.erase(file.begin());
-    file.insert(0,getenv("HOME"));
-  }
-  if(pos2!=string::npos){
-    file=file.substr(pos2,file.back());
-    string tmp=get_path();
-    tmp+=file;
-    file=tmp;
-  }
-  struct stat info;
-  if (stat(file.c_str(), &info) != 0) {  // does not exist
-    return false;
-  }
-  else{
-    return true;
-  }
-}
 void saveMap(){
   fstream save(M_S,ios::out);
   if(!checkExist(M_S)){
@@ -287,14 +252,14 @@ void creat_project(string flags,string name,string dir){
     }
   }
   catch (...) {
-    cerr<<flags<<" 选择未找到,请尝试添加或使用help获取帮助"<<endl;
+    cerr<<flags<<"\033[31m错误: 选择未找到,请尝试添加或使用help获取帮助\033[0m"<<endl;
   }
   try {
     if(checkExist(dir)){
       throw "pass";
     }
     else{
-      cerr<<"出现未知错误,请重试\n"<<endl;
+      cerr<<"\033[31m错误: 出现未知错误,请重试\033[0m\n"<<endl;
     }
   }
   catch (...) {
@@ -320,21 +285,9 @@ void save_pro(string name,string dir){
   save<<path<<endl;
   save.close();
 }
-
-string get_path(){
-  string res;
-  char path[PATH_SIZE];
-  if(!getcwd(path,PATH_SIZE)){
-    cout<<"error,未知路径"<<endl;
-  }
-  res=path;
-  res+="/";
-  return res;
-}
-
 void add_project(string flags,string dir){
   if(flags.size()==0||!checkExist(dir)){
-    cerr<<"错误:标识符 "<<flags<<" 和路径 "<<dir<<" 不能为空或不存在\n";
+    cerr<<"\033[31m错误: 错误:标识符 "<<flags<<" 和路径 "<<dir<<" 不能为空或不存在\n\033[0m";
     return;
   }
   else{
@@ -395,7 +348,7 @@ void del_project(string flags){
     }
   }
   if(!judge){
-    cout<<flags<<" 标识符不存在\n";
+    cout<<"\033[31m错误: "<<flags<<" 标识符不存在\033[0m \n";
     return;
   }
   else{
