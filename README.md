@@ -7,9 +7,9 @@
 系统 | 版本
 ---- | ----
 Android | 7.1以上(安装Termux)
-MacOs | 
-Windows |
-Linux | 
+MacOs | All
+Windows |All
+Linux | All
 ---- | ----
 
 
@@ -23,7 +23,7 @@ crc 编译运行C/C++命令
 
     crc:默认编译当前目录(包含子目录)下的所有源文件 #无任何输入
 
-    crc [编译选项] [目标文件] -d [指定编译后的文件] #指定编译后的文件>`
+    crc [编译选项] [目标文件] -d [指定编译后的文件] #指定编译后的文件`
 
     crc [编译选项] [NULL] -d [指定编译后的文件] #不输入文件 指定编译后的文件(不推荐)
 
@@ -39,13 +39,13 @@ crc 编译运行C/C++命令
 ---- | ----- 
 
 clc 清除所有编译的二进制文件  
-用法:`<clc>`
+用法:`clc`
 
 cdie 编写文件  
-用法:`<cdie 文件/目录>`
+用法:`cdie 文件/目录`
 
 cnp 创建新项目
-用法 `<cnp [选项] `
+用法 `cnp [选项] `
 
 选项 | 意义
 ---  | ---
@@ -59,7 +59,7 @@ cnp 创建新项目
 ---  | ---
 
 delete 删除所有配置文件  
-用法:`<delete>`  
+用法:`delete`  
 delete [选项][文件名,二进制文件名,项目]  
 
 选项 | 意义
@@ -73,10 +73,10 @@ delete [选项][文件名,二进制文件名,项目]
 ---- | ----- 
 
 clp 删除所有项目文件  
-用法:`<clp>`
+用法:`clp`
 
 git_r **请本地仓库上传至git仓库,需要提前git init**  
-用法:`<git_r [仓库地址]>`
+用法:`git_r [仓库地址]`
 
 cm  makefile与cmake的管理
 选项 | 意义
@@ -93,30 +93,30 @@ cm  makefile与cmake的管理
 ---- | ----- 
 
 快捷键(常用):
-`<空格+p+t+r>` 异步任务(编译运行之类的)
+`空格+p+t+r` 异步任务(编译运行之类的)
 
-`<空格+pte>` 编辑异步任务
+`空格+pte` 编辑异步任务
 
-`<空格+ft>` 窗口文件管理
+`空格+ft` 窗口文件管理
 
 在窗口文件管理器 N 创建新文件
 
-在文件内 `<gd>` 转定义
+在文件内 `gd` 转定义
 ### 安装
 
 首先
 
-`<git clone https://github.com/NGLSG/CDIES.git>`
+`git clone https://github.com/NGLSG/CDIES.git`
 
 然后
 
-`<cd ~/CDIES>`
+`cd ~/CDIES`
 
-`<sh cs.sh>`
+`sh cs.sh`
 
-`<sh install.sh>`
+`sh install.sh`
 
-`<sh configure.sh>`
+`sh configure.sh`
 
 
 ### 注意
@@ -132,8 +132,6 @@ unstable用户所有都是最新,stable可能会比较久(上述三个)
 ### 交流群
 QQ:一群:1023190045  
    二群:616872860  
-
-TG group:Not currently(The main reason is that you can't create without friends)
 
 
 ### Chang Log
@@ -185,19 +183,10 @@ TG group:Not currently(The main reason is that you can't create without friends)
 * * 1.5.2.3.更加人性化
 * 1.5.3.clp与clc命令的优化
 * 1.5.4.crc的优化
-* 使用`<$HOME/CDIES/update.sh> `更新
+* 使用`$HOME/CDIES/update.sh `更新
 
 1.6:
 更新内容:
 * 1.6.1.删除cm用cm代替
 * 1.6.2.更加高效的cmake与makefile管理
-* 使用`<$HOME/CDIES/update.sh> `更新
-
-### 研发透露和作者的话
-作者只是一个普通的高中生,更新慢的话,别太介意了,开学后坚持一月一更吧
-
-本项目坚持开源免费,转载需注明
-
-如有bug请向我反馈:927039685
-
-如果对此项目感兴趣可以联系我:QQ:927039685
+* 使用`$HOME/CDIES/update.sh `更新
