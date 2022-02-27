@@ -1,21 +1,19 @@
-#if __cplusplus >= 201103L || _MSVC_LANG >= 201103L
-
 #include "share.h"
 
 //编译 自定义flag default flags 默认为空
 void compile(string file, string flags);
 
 //编译 自定义flag 多个源文件
-void compile(vector<string> files, string flags);
+void compile(vector <string> files, string flags);
 
 //编译 自定义flag 结果
 void compile(string file, string flags, string res);
 
 //编译 自定义flag 多个源文件 结果
-void compile(vector<string> files, string flags, string res);
+void compile(vector <string> files, string flags, string res);
 
 //检测多个文件是否存在
-void check_empty(vector<string> files);
+void check_empty(vector <string> files);
 
 void check_empty(string file);
 
@@ -24,20 +22,20 @@ void f_sdl2(int argc, char *argv[], string &flags);
 
 //删除指定元素
 template<class T>
-void remove_element(vector<T> &v, T t);
+void remove_element(vector <T> &v, T t);
 
 //flags 扩展
 template<class U>
-void f_o_e(string &flags, string e, string o, vector<U> &v);
+void f_o_e(string &flags, string e, string o, vector <U> &v);
 
 //保存地址
 void save(string path);
 
 //读取
-map<string, string> load();
+map <string, string> load();
 
 //获取文件
-vector<string> get_all_files(string path, string suffix, vector<string> &res);
+vector <string> get_all_files(string path, string suffix, vector <string> &res);
 
 //保存地址
 #define save_path "/home/Template/bin.txt"
@@ -64,7 +62,7 @@ int main(int argc, char *argv[]) {
     regex r(regular, regex::icase);
     smatch res;
     string flags = " ";
-    vector<string> tmp;
+    vector <string> tmp;
     for (int i = 0; i < argc; i++) {
         tmp.push_back(argv[i]);
     }
@@ -104,8 +102,8 @@ int main(int argc, char *argv[]) {
                     }
                 }
                 if (file.empty()) {
-                    vector<string> res2;
-                    vector<string> files;
+                    vector <string> res2;
+                    vector <string> files;
                     get_all_files(".", regular, res2);//.代表当前目录
                     for (auto &it: res2) {
                         files.push_back(it);
@@ -117,12 +115,12 @@ int main(int argc, char *argv[]) {
                 }
             }
         } else if (argc == 1) {
-            vector<string> result;
+            vector <string> result;
             get_all_files(".", regular, result);//.代表当前目录
             compile(result, "");
         } else {
             //＞=2个选项
-            vector<string> file;
+            vector <string> file;
             string d;
             for (auto &it: tmp) {
                 if (regex_search(it, res, r)) {
@@ -166,16 +164,16 @@ int main(int argc, char *argv[]) {
             if (!d.empty() && !file.empty()) {
                 compile(file, flags, d);
             } else if (!d.empty() && file.empty()) {
-                vector<string> res;
-                vector<string> files;
+                vector <string> res;
+                vector <string> files;
                 get_all_files(".", regular, res);//.代表当前目录
                 for (auto &it: res) {
                     files.push_back(it);
                 }
                 compile(files, flags, d);
             } else if (file.empty()) {
-                vector<string> res;
-                vector<string> files;
+                vector <string> res;
+                vector <string> files;
                 get_all_files(".", regular, res);//.代表当前目录
                 for (auto &it: res) {
                     files.push_back(it);
@@ -189,7 +187,7 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-void compile(vector<string> files, string flags, string res) {
+void compile(vector <string> files, string flags, string res) {
     check_empty(files);
     string file;
     for (auto &it: files) {
@@ -238,7 +236,7 @@ void compile(string file, string flags, string res) {
     }
 }
 
-void compile(vector<string> files, string flags) {
+void compile(vector <string> files, string flags) {
     check_empty(files);
     if (files.size() > 1) {
         cout << "根据检测,你输入的源文件大于一个\n";
@@ -296,11 +294,11 @@ void compile(string file, string flags) {
     }
 }
 
-vector<string> get_all_files(string path, string suffix, vector<string> &res) {
-    vector<string> files;
+vector <string> get_all_files(string path, string suffix, vector <string> &res) {
+    vector <string> files;
     regex reg_obj(suffix, regex::icase);
 
-    vector<string> paths;
+    vector <string> paths;
     paths.push_back(path);
 
     for (int i = 0; i < paths.size(); i++) {
@@ -312,16 +310,13 @@ vector<string> get_all_files(string path, string suffix, vector<string> &res) {
             continue;
         }
         while ((dirp = readdir(dp)) != NULL) {
-            if (dirp->d_type == 4) {
-                if ((dirp->d_name)[0] == '.') // 这里很奇怪，每个文件夹下都会有两个文件： '.'  和   '..'
-                    continue;
-                string tmp_path = curr_path + "/" + dirp->d_name;
-                paths.push_back(tmp_path);
-            } else if (dirp->d_type == 8) {
-                if (regex_match(dirp->d_name, reg_obj)) {
-                    string full_path = curr_path + "/" + dirp->d_name;
-                    files.push_back(full_path);
-                }
+            if ((dirp->d_name)[0] == '.') // 这里很奇怪，每个文件夹下都会有两个文件： '.'  和   '..'
+                continue;
+            string tmp_path = curr_path + "/" + dirp->d_name;
+            paths.push_back(tmp_path);
+            if (regex_match(dirp->d_name, reg_obj)) {
+                string full_path = curr_path + "/" + dirp->d_name;
+                files.push_back(full_path);
             }
         }
         closedir(dp);
@@ -330,14 +325,14 @@ vector<string> get_all_files(string path, string suffix, vector<string> &res) {
     return files;
 }
 
-void check_empty(vector<string> files) {
+void check_empty(vector <string> files) {
     for (auto &it: files) {
         check_empty(it);
     }
 }
 
 template<class T>
-void remove_element(vector<T> &v, T t) {
+void remove_element(vector <T> &v, T t) {
     auto vit = find(v.begin(), v.end(), t);
     if (vit != v.end()) {
         for (auto &it: v) {
@@ -349,7 +344,7 @@ void remove_element(vector<T> &v, T t) {
 }
 
 template<class U>
-void f_o_e(string &flags, string ext, string opt, vector<U> &v) {
+void f_o_e(string &flags, string ext, string opt, vector <U> &v) {
     string temp = opt;
     for (auto it = opt.begin(); it < opt.end(); it++) {
         if (*it == '-') {}
@@ -371,7 +366,8 @@ void f_o_e(string &flags, string ext, string opt, vector<U> &v) {
 void save(string path) {
     if (checkExist(save_path)) {
 
-        string cmd="touch ";cmd+=save_path;
+        string cmd = "touch ";
+        cmd += save_path;
         system(cmd.c_str());
     } else {
         ofstream ofs(save_path, ios::out | ios::app);
@@ -389,11 +385,4 @@ void check_empty(string file) {
     ifs.close();
 }
 
-#else
-#include <iostream>
-int main()
-{
-  std::cerr<<"错误:你的c++版本太老了不支持,至少需要c++11\n";
-}
-#endif
 
