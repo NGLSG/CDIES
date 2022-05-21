@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
         if (argc == 2) {
             if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0 || strcmp(argv[1], "v") == 0 ||
                 strcmp(argv[1], "version") == 0) {
-                cout << "目前版本为:0.3beta\n作者:尼古拉斯鸽\n交流群:1023190045\n帮助:使用-h或--help获取帮助\n";
+                cout << "目前版本为:0.3beta\n帮助:使用-h或--help获取帮助\n";
 
             } else if (strcmp(argv[1], "help") == 0 || strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0 ||
                        strcmp(argv[1], "h") == 0) {
@@ -204,7 +204,6 @@ void compile(string file, string flags, string res) {
         flag += " -o ";
         flag += res;
         flag += flags;
-        int index = 0;
         string cmd = "g++";
         cmd += flag;
         cout << "输出的可执行文件为: " << res << endl;

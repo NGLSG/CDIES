@@ -14,14 +14,13 @@ Linux | All
 
 
 演示图:
-![Alt text](/path/demonstration.jpg)
-![Alt_text](/path/demonstration.gif)
+![Alt text](./path/demonstration.jpg)
+![Alt_text](./path/demonstration.gif)
 ### 命令解析
 
 crc 编译运行C/C++命令  
 用法:crc [编译选项] [目标文件] #默认模式
-
-    crc:默认编译当前目录(包含子目录)下的所有源文件 #无任何输入
+crc默认编译当前目录(包含子目录)下的所有源文件 #无任何输入
 
     crc [编译选项] [目标文件] -d [指定编译后的文件] #指定编译后的文件`
 
@@ -95,28 +94,20 @@ cm  makefile与cmake的管理
 快捷键(常用):
 `空格+p+t+r` 异步任务(编译运行之类的)
 
-`空格+pte` 编辑异步任务
+`空格+p+t+e` 编辑异步任务
 
-`空格+ft` 窗口文件管理
+`空格+f+t` 窗口文件管理
 
 在窗口文件管理器 N 创建新文件
 
 在文件内 `gd` 转定义
 ### 安装
 
-首先
-
-`git clone https://github.com/NGLSG/CDIES.git`
-
-然后
-
-`cd ~/CDIES`
-
-`sh cs.sh`
-
-`sh install.sh`
-
-`sh configure.sh`
+    git clone https://github.com/NGLSG/CDIES.git
+    cd ~/CDIES
+    sh cs.sh
+    sh install.sh
+    sh configure.sh
 
 
 ### 注意
@@ -135,58 +126,9 @@ QQ:一群:1023190045
 
 
 ### Chang Log
-1.1.3(stable)&&1.2.3beta(unstable)
-* 配置了所有语言的server(按需配置)  
-* 更新两个新命令git_r cm
 
-1.1.4&&1.2.4beta:
-* 增加git_s命令用于登录github(只需输入你绑定github的邮箱)&&gitee(公钥要自行导入)  
-* 配合git_r命令使用
-
-1.14.1&71.2.4.1beta:
-* 增加了更新Linux内核的扩展(小更新)  
-* 修复了点小bug
-
-1.15&1.2.5beta:
-* 增加了gcc12&g++12的编译安装  
-* extensions_select更名为extensions_install且移到/bin/目录  
-
-1.15.5 && 1.25.5beta:
-* 增加c/c++项目的cmake文件
-
-1.16 && 1.26beta:
-* 各个脚本增加成功与否的判断  
-
-1.3(stable&&unstable):
-
-1.3.1.编译运行C/C++ 的命令重写  
-特点:
-* 1.3.1.1.性能更高  
-* 1.3.1.2.更加人性化  
-* 1.3.1.3.适配更多场合  
-* 1.3.1.4.支持多文件共同编译(不建议在不是项目环境下的场合使用)  
-* 1.3.1.5.支持空输入,自动编译(可加入编译选项,解放双手,但不建议使用)  
-* 1.3.1.6.msc命令彻底删除  
-
-1.3.1:
+1.7:
 更新内容:
-* 1.3.1.1.cmake命令的优化  
-* 增加了异步make cmake (SPACE p t r 普通模式下)  
-* 优化cnpc cnpcx  
-
-1.5:
-更新内容:
-* 1.5.1.删除cnpc cnpx 由cnp代替
-* 1.5.2.cnp
-* * 1.5.2.1.性能更好
-* * 1.5.2.2.支持扩展
-* * 1.5.2.3.更加人性化
-* 1.5.3.clp与clc命令的优化
-* 1.5.4.crc的优化
-* 使用`$HOME/CDIES/update.sh `更新
-
-1.6:
-更新内容:
-* 1.6.1.删除cm用cm代替
-* 1.6.2.更加高效的cmake与makefile管理
+* 1.7.1.删除cm用mpm代替
+* 1.7.2.更加高效的cmake与makefile管理
 * 使用`$HOME/CDIES/update.sh `更新
